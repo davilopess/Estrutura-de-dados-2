@@ -1,12 +1,13 @@
 import json
 import copy
-import time
+
 
 class Grafo(object):
     def __init__(self):
         self.algoritimoDeOrdenacao = None
         self.vertices = None
         self.arestas = None
+        self.possui = None
         return
 
     def _algortmoDeOrdencaoErro(self):
@@ -14,9 +15,10 @@ class Grafo(object):
             print('Algoritmo de Ordencação Nulo, finalizando programa.')
             raise ValueError
 
-    def estabelecerAlgoritmoDeOrdencao(self, algoritimoDeOrdenacao):
+    def estabelecerAlgoritmoDeOrdencao(self, algoritimoDeOrdenacao, possui = None, possui2 = None):
         self.algoritimoDeOrdenacao = algoritimoDeOrdenacao
-
+        self.possui = possui
+        self.possui2 = possui2
     def executarKruskal(self):
         self._algortmoDeOrdencaoErro()
         return self._kruskal()
@@ -48,10 +50,16 @@ class Grafo(object):
         arvoreGeradoraMinima = []
 
         # Ordencão das arestas iniciada
-        inicio = time.time()
-        arestasOrdenadas = self.algoritimoDeOrdenacao.ordenar( copy.copy(self.arestas) )
-        fim = time.time()
-        print("TEMPO DE EXECUÇÃO : {}".format(fim - inicio))
+        if self.possui2 != None:
+            arestasOrdenadas = self.algoritimoDeOrdenacao.ordenar(copy.copy(self.arestas),0, len(self.arestas)-1 , self.possui2)                            #Se for selecionado o quick os parametros aumentam
+
+        elif self.possui != None:
+            arestasOrdenadas = self.algoritimoDeOrdenacao.ordenar( copy.copy(self.arestas), self.possui )                                                   #Se for selecionado o merge é preciso passar o L
+
+        else:
+            arestasOrdenadas = self.algoritimoDeOrdenacao.ordenar(copy.copy(self.arestas))
+
+
 
         # Ordencão das arestas finalizada
 
