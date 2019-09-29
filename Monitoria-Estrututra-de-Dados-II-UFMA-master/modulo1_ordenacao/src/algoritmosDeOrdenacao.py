@@ -71,31 +71,7 @@ class ShellSort(object):
                             break
                     colecao[j] = aux
         return colecao
-'''
-class MergeSort(object):
-    def merge(self, colecao,first,  mid, last):
-        left = colecao[first:mid]
-        right = colecao[mid:last + 1]
 
-        i = j = 0
-
-        for k in range (first, last + 1):
-            if int(left[i]['weight']) <= int(right[j]['weight']):
-                colecao[k] = left[i]
-                i+=1
-            else:
-                colecao[k] = right[j]
-                j += 1
-    def mergesort(self, colecao, first, last):
-        if first < last:
-            mid = (first + last)//2
-            self.mergesort(colecao, first, mid)
-            self.mergesort(colecao, mid + 1, last)
-            self.merge(colecao, first, mid, last)
-
-    def ordenar(self, colecao):
-        return self.mergesort( colecao, 0, len(colecao) - 1)
-'''
 
 class MergeSortInicial(object):
 
